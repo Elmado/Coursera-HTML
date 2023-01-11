@@ -1,0 +1,25 @@
+body{
+	background: lightcoral;
+}
+	
+h1 {
+		color:blue;
+		text-align: center;
+	}
+P {
+		color: green;
+		width: 100px;
+	}
+h2{
+		color:indianred;
+		text-align: center;
+	}
+
+.button
+	{
+		text-align:center;
+		background-color:greenyellow;
+		border: 5px solid darkred;
+		display: block;
+
+	}
