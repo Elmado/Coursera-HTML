@@ -18,10 +18,53 @@
 	</p>
 </section>
 <section>
+
+    <div id="chatgpt-bot-container">this shoudl containt the chat bot</div>
+    <script>
+        const apiUrl = 'https://api.openai.com/v1/chat/completions';
+        const apiKey = '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';
+
+        const chatElement = document.getElementById('chatgpt-bot-container');
+
+        function sendMessage(message) {
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    messages: [{ role: 'system', content: 'You are now connected to the ChatGPT bot.' }, { role: 'user', content: message }]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botReply = data.choices[0].message.content;
+                displayMessage(botReply, 'bot');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function displayMessage(message, role) {
+            const messageElement = document.createElement('p');
+            messageElement.classList.add(role);
+            messageElement.textContent = message;
+            chatElement.appendChild(messageElement);
+        }
+
+        const userInput = prompt('Enter your message:');
+        sendMessage(userInput);
+    </script>
+
+
+</section>
+
+<p class="button">
+		<a href="#top"> Back to top</a>
+<section>
 	<h2>Quelques Photos et Vidéos</h2>
-	<a href="https://elmado.github.io/elmado/" title="OpenElmadoWebsite" target="_blank">
-		<div>open Elmado website</div>
-	</a>
 	<p>
 		<a href="https://youtu.be/6w9FruJQAK8 " target="_blank">Excellente Video</a>
 	</p>
@@ -30,11 +73,9 @@
 	</p>
 	<p>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/y881t8ilMyc" frameborder="0" allowfullscreen></iframe>
-	      </iframe>
 	  </p>
 </section>
-<p class="button">
-		<a href="#top"> Back to top</a>
+
 </p>
 </body>
 </html>
